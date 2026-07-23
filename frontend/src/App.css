@@ -1,184 +1,420 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* =========================================
+   SyncSpace Login Page - Final CSS
+========================================= */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+body {
+  font-family: "Inter", sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  overflow: hidden;
 }
 
-#center {
+/* =========================================
+   Main Layout
+========================================= */
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: center;
+  justify-items: center;
+
+  padding: 0 5%;
+  gap: 40px;
+
+  background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+}
+
+/* =========================================
+   Left Panel
+========================================= */
+
+.left-panel {
+  width: 100%;
+  max-width: 560px;
+
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  justify-content: center;
 }
 
-#next-steps {
+.branding {
+  margin-bottom: 36px;
+}
+
+.logo {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.tagline {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #94a3b8;
+}
+
+.preview-box {
+  width: 100%;
+  height: 260px;
+
+  border: 2px dashed rgba(255,255,255,0.15);
+  border-radius: 20px;
+
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
+  justify-content: center;
+  align-items: center;
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+  color: #94a3b8;
+  font-size: 24px;
+
+  margin-bottom: 32px;
+}
+
+.users {
+  font-size: 18px;
+  color: #dbeafe;
+  margin-bottom: 32px;
+}
+
+.quote {
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+/* =========================================
+   Right Panel
+========================================= */
+
+.right-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+
+  padding: 36px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.login-card h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #f8fafc;
+}
+
+.subtitle {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 28px;
+}
+
+/* =========================================
+   Social Buttons
+========================================= */
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.social-btn {
+  flex: 1;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 12px;
+
+  color: #f8fafc;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: #475569;
+}
+
+/* =========================================
+   Divider
+========================================= */
+
+.divider {
+  text-align: center;
+  color: #94a3b8;
+  margin: 22px 0;
+  font-size: 14px;
+}
+
+/* =========================================
+   Labels
+========================================= */
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f8fafc;
+}
+
+/* =========================================
+   Inputs
+========================================= */
+
+.input-box {
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 12px;
+
+  padding: 0 16px;
+  margin-bottom: 20px;
+
+  transition: all 0.2s ease;
+}
+
+.input-box:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.25);
+}
+
+.input-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #f8fafc;
+  font-size: 15px;
+}
+
+.input-box input::placeholder {
+  color: #64748b;
+}
+
+.input-box svg {
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+/* =========================================
+   Password Header
+========================================= */
+
+.password-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-header a {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.password-header a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Remember Row
+========================================= */
+
+.remember-row {
+  margin-bottom: 24px;
+}
+
+.remember-row label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.remember-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+}
+
+/* =========================================
+   Sign In Button
+========================================= */
+
+.signin-btn {
+  width: 100%;
+  height: 54px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #2563eb;
+  color: #f8fafc;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signin-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37,99,235,0.35);
+}
+
+/* =========================================
+   Footer
+========================================= */
+
+.signup-text {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.signup-text a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 1023px) {
+  body {
+    overflow: auto;
   }
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
+  .login-container {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 48px 24px;
   }
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
+  .left-panel {
+    align-items: center;
     text-align: center;
   }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
 
   .logo {
-    height: 18px;
+    font-size: 48px;
   }
 
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
+  .quote {
+    font-size: 32px;
   }
 
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+  .login-card {
+    max-width: 440px;
   }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
+@media (max-width: 767px) {
+  .left-panel {
+    display: none;
+  }
+
+  .login-container {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 28px 24px;
+  }
+
+  .social-buttons {
+    flex-direction: column;
   }
 }
+/* =========================================
+   Password Toggle
+========================================= */
 
-.ticks {
-  position: relative;
-  width: 100%;
+.password-toggle {
+  border: none;
+  background: transparent;
+  color: #94a3b8;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+  cursor: pointer;
+
+  padding: 0;
+  margin-left: 10px;
+
+  font-size: 18px;
+
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #f8fafc;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+.password-toggle svg {
+  pointer-events: none;
 }
