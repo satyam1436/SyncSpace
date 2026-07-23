@@ -1,0 +1,89 @@
+.hero-preview {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+.demo-badge {
+  display: inline-block;
+  background-color: #1E293B;
+  color: #94A3B8;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  border: 1px solid #334155;
+}
+
+.preview-window {
+  display: flex;
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.preview-panel {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+  min-height: 200px;
+}
+
+.diagram-panel {
+  border-right: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-panel {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cursor-badge {
+  position: absolute;
+  top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #F8FAFC;
+}
+
+.cursor-lead {
+  left: 10px;
+  background-color: #0EA5E9;
+}
+
+.cursor-dev {
+  right: 10px;
+  background-color: #6366F1;
+}
+
+.mock-diagram {
+  width: 100%;
+  max-width: 200px;
+}
+
+.mock-code {
+  color: #F8FAFC;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
+
+/* Mobile - stack panels instead of side by side */
+@media (max-width: 768px) {
+  .preview-window {
+    flex-direction: column;
+  }
+
+  .diagram-panel {
+    border-right: none;
+    border-bottom: 1px solid #334155;
+  }
+}
