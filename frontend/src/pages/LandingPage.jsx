@@ -3,6 +3,7 @@ import FeatureSection from "../components/landing/FeatureSection";
 import AboutSection from "../components/landing/AboutSection";
 import WhyChooseUs from "../components/landing/WhyChooseUs";
 import FAQSection from "../components/landing/FAQSection";
+import ContactSection from "../components/landing/ContactSection";
 
 function LandingPage() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function LandingPage() {
       <AboutSection />
       <WhyChooseUs />
       <FAQSection />
+      <ContactSection />
     </>
   );
 }
