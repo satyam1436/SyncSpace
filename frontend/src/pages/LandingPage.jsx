@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import FeatureSection from "../components/landing/FeatureSection";
 import AboutSection from "../components/landing/AboutSection";
 import WhyChooseUs from "../components/landing/WhyChooseUs";
+import FAQSection from "../components/landing/FAQSection";
 
 function LandingPage() {
   useEffect(() => {
@@ -16,6 +17,7 @@ function LandingPage() {
       <FeatureSection />
       <AboutSection />
       <WhyChooseUs />
+      <FAQSection />
     </>
   );
 }
