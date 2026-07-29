@@ -16,7 +16,6 @@ A real-time collaborative whiteboard and code editor built using the MERN Stack.
 ### Frontend
 - React
 - Vite
-- Tailwind CSS
 - React Router
 - Socket.io Client
 
