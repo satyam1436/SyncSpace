@@ -53,7 +53,7 @@ const userSchema = new Schema(
 );
 
 // Email unique index explicit declaration
-userSchema.index({ email: 1 }, { unique: true });
+// userSchema.index({ email: 1 }, { unique: true });
 
 // JSON Transformation: password aur __v ko remove karne ke liye
 userSchema.set('toJSON', {

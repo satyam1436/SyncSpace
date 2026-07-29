@@ -173,7 +173,7 @@ const LoginCard = () => {
         </button>
 
         <p className="signup-text">
-          Don't have an account? <a href="#">Create One</a>
+          Don't have an account? <a href="/register">Create One</a>
         </p>
       </motion.form>
     </div>
