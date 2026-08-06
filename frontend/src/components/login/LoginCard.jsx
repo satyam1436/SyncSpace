@@ -72,7 +72,7 @@ const LoginCard = () => {
         JSON.stringify(response.data.user)
       );
 
-      navigate("/");
+      navigate("/create-room");
     } catch (error) {
       console.error(error);
 
