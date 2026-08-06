@@ -7,8 +7,14 @@ import {
   FaEye,
   FaEyeSlash,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/auth.api";
+import { Link } from "react-router-dom";
 
 const LoginCard = () => {
+
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -40,22 +46,43 @@ const LoginCard = () => {
   };
 
   // Form Submission Handler
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents page reload!
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (!validate()) {
       setShake(true);
-      setTimeout(() => setShake(false), 500); // Trigger shake animation on error
+      setTimeout(() => setShake(false), 500);
       return;
     }
 
-    setIsSubmitting(true);
+    try {
+      setIsSubmitting(true);
 
-    // Simulated Auth Request (Aage chal kar backend API call yahan aayegi)
-    setTimeout(() => {
+      const response = await loginUser({
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+      });
+
+      console.log(response);
+
+      // Save authentication
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+
+      alert(
+        error.response?.data?.message ||
+        "Login failed. Please try again."
+      );
+    } finally {
       setIsSubmitting(false);
-      alert(`Logging in with Email: ${formData.email}`);
-    }, 1200);
+    }
   };
 
   return (
@@ -173,7 +200,10 @@ const LoginCard = () => {
         </button>
 
         <p className="signup-text">
-          Don't have an account? <a href="/register">Create One</a>
+          Don't have an account?{" "}
+          <Link to="/register">
+            Create One
+          </Link>
         </p>
       </motion.form>
     </div>
