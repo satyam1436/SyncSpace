@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../api/auth.api";
+import { Link } from "react-router-dom";
 
 const cardEntranceVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.98 },
@@ -12,6 +15,9 @@ const cardEntranceVariants = {
 };
 
 export default function Signup() {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -67,19 +73,58 @@ export default function Signup() {
         if (errors[name]) validateField(name, value);
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const nameErr = validateField('name', formData.name);
-        const emailErr = validateField('email', formData.email);
-        const passErr = validateField('password', formData.password);
-        const confirmErr = validateField('confirmPassword', formData.confirmPassword);
 
-        if (nameErr || emailErr || passErr || confirmErr) return;
+        const nameErr = validateField("name", formData.name);
+        const emailErr = validateField("email", formData.email);
+        const passErr = validateField("password", formData.password);
+        const confirmErr = validateField(
+            "confirmPassword",
+            formData.confirmPassword
+        );
 
-        setStatus('submitting');
-        setTimeout(() => {
-            setStatus('success');
-        }, 1500);
+        if (nameErr || emailErr || passErr || confirmErr) {
+            return;
+        }
+
+        try {
+
+            setStatus("submitting");
+
+            const response = await registerUser({
+
+                name: formData.name.trim(),
+
+                email: formData.email.trim().toLowerCase(),
+
+                password: formData.password,
+
+            });
+
+            console.log(response);
+
+            setStatus("success");
+
+            setTimeout(() => {
+
+                navigate("/login");
+
+            }, 1000);
+
+        } catch (error) {
+
+            console.error(error);
+
+            setStatus("idle");
+
+            alert(
+                error.response?.data?.message ||
+                "Something went wrong."
+            );
+
+        }
     };
 
     const styles = {
@@ -404,9 +449,9 @@ export default function Signup() {
 
                         <div style={styles.footer}>
                             Already have an account?{' '}
-                            <a href="/login" style={styles.link}>
+                            <Link to="/login">
                                 Sign In
-                            </a>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>
