@@ -1,0 +1,25 @@
+.card {
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .card {
+    width: 80%;
+    padding: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .card {
+    width: 92%;
+    padding: 24px 16px;
+  }
+}

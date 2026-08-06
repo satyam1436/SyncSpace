@@ -1,0 +1,36 @@
+.btn {
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary - solid blue */
+.btn-primary {
+  background-color: #2563EB;
+  color: #F8FAFC;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* Secondary - outline slate */
+.btn-secondary {
+  background-color: rgba(30, 41, 59, 0.5);
+  color: #F8FAFC;
+  border: 1px solid #334155;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #1E293B;
+}

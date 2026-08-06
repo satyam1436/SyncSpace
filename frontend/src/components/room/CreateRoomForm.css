@@ -1,0 +1,57 @@
+.create-room-form {
+  width: 100%;
+}
+
+.visibility-group {
+  margin-bottom: 20px;
+}
+
+.visibility-label {
+  display: block;
+  color: #94A3B8;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.visibility-options {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #F8FAFC;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  accent-color: #2563EB;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.room-code-error {
+  display: block;
+  color: #F43F5E;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Mobile - stack visibility options */
+@media (max-width: 768px) {
+  .visibility-options {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
