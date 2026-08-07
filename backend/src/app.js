@@ -16,6 +16,7 @@ app.use(
     })
 );
 
+
 // Parse incoming JSON request bodies
 app.use(express.json({ limit: "10kb" }));
 
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
 
     next(error);
 });
+
 
 // Global Error Handler
 app.use(errorHandler);
