@@ -11,6 +11,7 @@ function CreateRoomPage() {
     };
   }, []);
 
+  
   return (
     <div className="create-room-page">
       <Card>
@@ -23,5 +24,6 @@ function CreateRoomPage() {
     </div>
   );
 }
+
 
 export default CreateRoomPage;
