@@ -1,0 +1,47 @@
+.error-card {
+  text-align: center;
+}
+
+.error-icon {
+  color: #F43F5E;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.error-title {
+  color: #F8FAFC;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: "Inter", sans-serif;
+}
+
+.error-description {
+  color: #94A3B8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.error-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.error-btn {
+  width: 100%;
+}
+
+.error-secondary-link {
+  color: #94A3B8;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.error-secondary-link:hover {
+  color: #F8FAFC;
+  text-decoration: underline;
+}
