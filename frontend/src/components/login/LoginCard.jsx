@@ -8,7 +8,7 @@ import {
   FaEyeSlash,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../api/auth.api";
+import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const LoginCard = () => {
@@ -24,6 +24,7 @@ const LoginCard = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
+  const { login } = useAuth();
 
   const validate = () => {
     let newErrors = {};
@@ -58,19 +59,10 @@ const LoginCard = () => {
     try {
       setIsSubmitting(true);
 
-      const response = await loginUser({
+      await login({
         email: formData.email.trim().toLowerCase(),
         password: formData.password,
       });
-
-      console.log(response);
-
-      // Save authentication
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data.user)
-      );
 
       navigate("/create-room");
     } catch (error) {
