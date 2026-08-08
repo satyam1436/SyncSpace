@@ -52,6 +52,7 @@ const userSchema = new Schema(
     }
 );
 
+
 // Email unique index explicit declaration
 // userSchema.index({ email: 1 }, { unique: true });
 
@@ -63,6 +64,7 @@ userSchema.set('toJSON', {
         return ret;
     },
 });
+
 
 const User = model('User', userSchema);
 
