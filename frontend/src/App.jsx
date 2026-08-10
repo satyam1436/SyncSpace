@@ -5,6 +5,7 @@ import SignupPage from "./pages/register";
 import CreateRoomPage from "./pages/CreateRoomPage";
 import JoinRoomPage from "./pages/JoinRoomPage";
 import RoomNotFoundPage from "./pages/RoomNotFoundPage";
+import RoomLoadingPage from "./pages/RoomLoadingPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/create-room" element={<CreateRoomPage />} />
       <Route path="/join-room" element={<JoinRoomPage />} />
       <Route path="/room-not-found" element={<RoomNotFoundPage />} />
+      <Route path="/room-loading" element={<RoomLoadingPage />} />
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
