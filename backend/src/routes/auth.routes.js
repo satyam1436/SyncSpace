@@ -16,9 +16,11 @@ import {
 
 const router = Router();
 
+
 // Public routes
 router.post("/signup", validateSignup, signup);
 router.post("/login", validateLogin, login);
+
 
 // Protected routes
 router.get("/me", authenticateUser, getMe);
