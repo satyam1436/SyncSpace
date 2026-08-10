@@ -4,6 +4,8 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 
+import roomRoutes from "./routes/roomRoutes.js";
+
 const app = express();
 
 // Global Middleware
@@ -26,6 +28,8 @@ app.use(
         limit: "10kb",
     })
 );
+
+app.use("/api/v1/rooms", roomRoutes);
 
 // Health Check
 app.get("/api/health", (req, res) => {
