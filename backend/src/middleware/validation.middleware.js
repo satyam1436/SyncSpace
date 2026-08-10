@@ -6,6 +6,7 @@ const createValidationError = (message) => {
     return error;
 };
 
+
 /**
  * Validate signup request
  */
@@ -50,12 +51,14 @@ export const validateSignup = (req, res, next) => {
         );
     }
 
+    
     // Pass normalized values forward
     req.body.name = trimmedName;
     req.body.email = normalizedEmail;
 
     next();
 };
+
 
 /**
  * Validate login request
