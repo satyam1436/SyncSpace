@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 
+
 import authRoutes from "./routes/auth.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 
@@ -18,6 +19,7 @@ app.use(
     })
 );
 
+
 // Parse incoming JSON request bodies
 app.use(express.json({ limit: "10kb" }));
 
@@ -28,6 +30,7 @@ app.use(
         limit: "10kb",
     })
 );
+
 
 app.use("/api/v1/rooms", roomRoutes);
 
