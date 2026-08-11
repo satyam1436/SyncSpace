@@ -6,6 +6,7 @@ import CreateRoomPage from "./pages/CreateRoomPage";
 import JoinRoomPage from "./pages/JoinRoomPage";
 import RoomNotFoundPage from "./pages/RoomNotFoundPage";
 import RoomLoadingPage from "./pages/RoomLoadingPage";
+import NotFound404Page from "./pages/NotFound404Page";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import "./App.css";
 
@@ -20,11 +21,15 @@ function App() {
       <Route path="/join-room" element={<JoinRoomPage />} />
       <Route path="/room-not-found" element={<RoomNotFoundPage />} />
       <Route path="/room-loading" element={<RoomLoadingPage />} />
+      <Route path="/404" element={<NotFound404Page />} />
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
         <Route path="/create-room" element={<CreateRoomPage />} />
       </Route>
+
+      {/* Catch-all: any unknown route shows 404 */}
+      <Route path="*" element={<NotFound404Page />} />
     </Routes>
   );
 }

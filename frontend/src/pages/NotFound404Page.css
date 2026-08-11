@@ -1,0 +1,26 @@
+.not-found-404-page {
+  min-height: 100vh;
+  background-color: #0F172A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.badge-404 {
+  font-size: 100px;
+  font-weight: 800;
+  color: #1E293B;
+  text-shadow: 0 0 40px rgba(37, 99, 235, 0.4);
+  font-family: "Inter", sans-serif;
+  margin-bottom: -20px;
+  letter-spacing: 4px;
+}
+
+@media (max-width: 768px) {
+  .badge-404 {
+    font-size: 64px;
+  }
+}
