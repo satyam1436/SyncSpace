@@ -3,6 +3,7 @@ import Card from "../components/ui/Card";
 import CreateRoomForm from "../components/room/CreateRoomForm";
 import "./CreateRoomPage.css";
 
+
 // logout test
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -15,6 +16,7 @@ function CreateRoomPage() {
     };
   }, []);
 
+  
   // logout test
   const { user, logout } = useAuth();
   const navigate = useNavigate();
