@@ -4,42 +4,55 @@
  */
 export const errorHandler = (err, req, res, next) => {
     let statusCode = err.statusCode || 500;
+    let code = err.errorCode || err.code || "INTERNAL_SERVER_ERROR";
     let message = err.message || "Internal server error";
-    let errorCode = err.code || "INTERNAL_SERVER_ERROR";
+    let details = [];
 
     // Mongoose validation error
     if (err.name === "ValidationError") {
         statusCode = 400;
-        errorCode = "VALIDATION_ERROR";
+        code = "VALIDATION_ERROR";
 
-        message = Object.values(err.errors)
-            .map((error) => error.message)
-            .join(", ");
+        details = Object.values(err.errors).map((error) => ({
+            field: error.path,
+            message: error.message,
+        }));
+
+        message = "Validation failed";
     }
 
     // MongoDB duplicate key error
     if (err.code === 11000) {
         statusCode = 409;
-        errorCode = "DUPLICATE_RESOURCE";
+        code = "DUPLICATE_RESOURCE";
 
         const field = Object.keys(err.keyValue || {})[0];
 
         message = field
             ? `${field} already exists`
             : "Resource already exists";
+
+        details = field
+            ? [{ field, message }]
+            : [];
     }
 
     // Invalid MongoDB ObjectId
     if (err.name === "CastError") {
         statusCode = 400;
-        errorCode = "INVALID_ID";
+        code = "INVALID_ID";
         message = "Invalid resource ID";
+
+        details = [];
     }
 
     const response = {
         success: false,
-        message,
-        errorCode,
+        error: {
+            code,
+            message,
+            details,
+        },
     };
 
     // Development environment only
