@@ -115,3 +115,32 @@ export const leaveRoom = async ({ roomId, userId }) => {
 
     return updatedRoom;
 };
+
+export const getRoom = async ({ roomId }) => {
+    const room = await Room.findOne({ roomId })
+        .populate("owner", "name email avatar")
+        .populate("participants", "name email avatar");
+
+    if (!room) {
+        const error = new Error("Room not found");
+        error.statusCode = 404;
+        error.errorCode = "ROOM_NOT_FOUND";
+        throw error;
+    }
+
+    return room;
+};
+
+export const getMyRooms = async ({ userId }) => {
+    const rooms = await Room.find({
+        $or: [
+            { owner: userId },
+            { participants: userId },
+        ],
+    })
+        .populate("owner", "name email avatar")
+        .populate("participants", "name email avatar")
+        .sort({ createdAt: -1 });
+
+    return rooms;
+};
