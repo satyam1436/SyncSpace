@@ -52,3 +52,8 @@
   cursor: pointer;
   font-family: inherit;
 }
+
+.error-secondary-button:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 3px;
+}
