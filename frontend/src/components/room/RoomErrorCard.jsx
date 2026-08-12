@@ -32,9 +32,13 @@ function RoomErrorCard({
             {secondaryLabel}
           </Link>
         ) : (
-          <button onClick={onSecondaryClick} className="error-secondary-link error-secondary-button">
-            {secondaryLabel}
-          </button>
+          <button
+  type="button"
+  onClick={onSecondaryClick}
+  className="error-secondary-link error-secondary-button"
+>
+  {secondaryLabel}
+</button>
         )}
       </div>
     </div>
