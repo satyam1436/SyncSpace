@@ -8,11 +8,12 @@ function NotFound404Page() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.body.style.overflow = "auto";
-    return () => {
-      document.body.style.overflow = "hidden";
-    };
-  }, []);
+  document.body.style.overflow = "auto";
+
+  return () => {
+    document.body.style.overflow = "unset";
+  };
+}, []);
 
   return (
     <div className="not-found-404-page">
