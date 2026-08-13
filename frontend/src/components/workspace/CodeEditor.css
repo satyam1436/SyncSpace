@@ -1,0 +1,79 @@
+.code-editor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #020617;
+    color: #f8fafc;
+    overflow: hidden;
+}
+
+.code-editor-tabs {
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    overflow-x: auto;
+}
+
+.code-editor-tab {
+    min-width: 110px;
+    padding: 0 14px;
+    border: none;
+    border-right: 1px solid #334155;
+    background: transparent;
+    color: #94a3b8;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.code-editor-tab:hover {
+    color: #f8fafc;
+    background: #334155;
+}
+
+.code-editor-tab.active {
+    color: #f8fafc;
+    background: #020617;
+    border-top: 2px solid #2563eb;
+}
+
+.code-editor-surface {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px 0;
+    background: #020617;
+}
+
+.code-editor-lines {
+    min-width: max-content;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.code-editor-line {
+    display: flex;
+    min-height: 22px;
+}
+
+.code-editor-line-number {
+    width: 48px;
+    flex-shrink: 0;
+    padding-right: 14px;
+    box-sizing: border-box;
+    text-align: right;
+    color: #475569;
+    user-select: none;
+}
+
+.code-editor-code {
+    padding-right: 32px;
+    color: #cbd5e1;
+    white-space: pre;
+}

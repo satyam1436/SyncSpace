@@ -9,6 +9,7 @@ import RoomLoadingPage from "./pages/RoomLoadingPage";
 import NotFound404Page from "./pages/NotFound404Page";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import "./App.css";
+import WorkspacePage from "./pages/WorkspacePage";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
       {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
         <Route path="/create-room" element={<CreateRoomPage />} />
+      </Route>
+      <Route element={<ProtectedRoute />}>
+        <Route path="/workspace" element={<WorkspacePage />} />
       </Route>
 
       {/* Catch-all: any unknown route shows 404 */}
