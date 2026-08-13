@@ -1,0 +1,52 @@
+.workspace-status-bar-content {
+    width: 100%;
+    height: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 10px;
+    background: #1e293b;
+    border-top: 1px solid #334155;
+    color: #94a3b8;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 10px;
+}
+
+.status-bar-left,
+.status-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.status-bar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.status-item svg {
+    font-size: 8px;
+}
+
+.status-connected {
+    color: #10b981;
+}
+
+.status-connected svg {
+    font-size: 6px;
+}
+
+.status-git-clean {
+    color: #10b981;
+    white-space: nowrap;
+}
