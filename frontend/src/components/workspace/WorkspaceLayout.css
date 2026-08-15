@@ -9,40 +9,283 @@
     font-family: "Inter", system-ui, sans-serif;
 }
 
+/* =========================
+   TOP NAV
+   ========================= */
+
 .workspace-top-nav {
     height: 56px;
     flex-shrink: 0;
     background: #1e293b;
     border-bottom: 1px solid #334155;
+
     display: flex;
     align-items: center;
+
     padding: 0 16px;
+    box-sizing: border-box;
 }
+
+/* =========================
+   WORKSPACE BODY
+   ========================= */
 
 .workspace-body {
     flex: 1;
     min-height: 0;
+
     display: flex;
+
     overflow: hidden;
+    position: relative;
 }
 
-.workspace-sidebar {
-    width: 60px;
-    flex-shrink: 0;
-    background: #1e293b;
-    border-right: 1px solid #334155;
-}
+/* =========================
+   MAIN WORKSPACE
+   ========================= */
 
 .workspace-main {
     flex: 1;
     min-width: 0;
+    min-height: 0;
+
     overflow: hidden;
+
     background: #020617;
 }
 
-.workspace-right-panel {
-    width: 320px;
-    flex-shrink: 0;
-    background: #1e293b;
-    border-left: 1px solid #334155;
+/* =========================
+   SPLIT VIEW
+   ========================= */
+
+.workspace-split-view {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+.workspace-split-editor,
+.workspace-split-whiteboard {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.workspace-split-editor {
+    border-right: 1px solid #334155;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 1023px) {
+    .workspace-main {
+        min-width: 0;
+    }
+
+    .workspace-sidebar-nav {
+        width: 52px;
+        flex-shrink: 0;
+    }
+
+    .workspace-right-panel-container {
+        width: 260px;
+        flex-shrink: 0;
+    }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 767px) {
+
+    .workspace-layout {
+        width: 100%;
+        height: 100vh;
+        min-width: 0;
+
+        overflow: hidden;
+    }
+
+    /*
+     Mobile structure:
+
+     ┌──────┬──────────────┐
+     │      │              │
+     │ Side │    Editor    │
+     │ bar  │              │
+     │      ├──────────────┤
+     │      │    Chat      │
+     │      │              │
+     └──────┴──────────────┘
+    */
+
+    .workspace-body {
+        flex: none;
+
+        width: 100%;
+        height: calc(100vh - 84px);
+
+        min-height: 0;
+        min-width: 0;
+
+        display: grid !important;
+
+        grid-template-columns: 46px minmax(0, 1fr);
+
+        /*
+         * First row = Editor
+         * Second row = Chat / Participants
+         */
+        grid-template-rows:
+            minmax(500px, 1fr) 320px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        position: relative;
+    }
+
+    /* =========================
+       SIDEBAR
+       ========================= */
+
+    .workspace-sidebar-nav {
+        grid-column: 1;
+        grid-row: 1 / 3;
+
+        width: 46px;
+        height: 100%;
+
+        min-height: 0;
+
+        position: relative;
+
+        z-index: 30;
+    }
+
+    /* =========================
+       MAIN / EDITOR
+       ========================= */
+
+    .workspace-main {
+        grid-column: 2;
+        grid-row: 1;
+
+        width: 100%;
+        height: 100%;
+
+        min-width: 0;
+        min-height: 0;
+
+        margin: 0;
+
+        overflow: hidden;
+    }
+
+    /* =========================
+       RIGHT PANEL
+       ========================= */
+
+    .workspace-right-panel-container {
+        grid-column: 2;
+        grid-row: 2;
+
+        width: 100% !important;
+        height: 320px !important;
+
+        min-width: 0;
+        min-height: 320px;
+
+        margin: 0 !important;
+        padding: 0;
+
+        position: relative;
+
+        z-index: 10;
+
+        overflow: hidden;
+    }
+
+    /* =========================
+       SPLIT VIEW
+       ========================= */
+
+    .workspace-split-view {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        overflow: hidden;
+    }
+
+    .workspace-split-editor {
+        display: none;
+    }
+
+    .workspace-split-whiteboard {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+button:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Better keyboard navigation */
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent accidental text selection on UI controls */
+.workspace-sidebar-nav,
+.workspace-top-nav,
+.workspace-status-bar-content,
+.right-panel-tabs,
+.whiteboard-toolbar {
+    user-select: none;
+}
+
+/* Touch-friendly controls on smaller screens */
+@media (max-width: 767px) {
+    .sidebar-nav-item {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .right-panel-tabs button {
+        min-height: 40px;
+    }
+
+    .chat-input-action,
+    .chat-send-button {
+        min-width: 34px;
+        min-height: 34px;
+    }
+
+    .whiteboard-tool {
+        min-width: 34px;
+        min-height: 34px;
+    }
 }

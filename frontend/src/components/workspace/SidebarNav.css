@@ -48,3 +48,27 @@
     color: #ffffff;
     border-color: #3b82f6;
 }
+
+.sidebar-chat-button {
+    position: relative;
+}
+
+.sidebar-unread-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 13px;
+    height: 13px;
+    padding: 0 3px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1e293b;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+}

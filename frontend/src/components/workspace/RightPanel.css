@@ -2,28 +2,49 @@
     width: 320px;
     height: 100%;
     min-height: 0;
+
     flex-shrink: 0;
+
     display: flex;
     flex-direction: column;
+
     background: #1e293b;
     border-left: 1px solid #334155;
+
+    box-sizing: border-box;
 }
 
+/* =========================
+   TABS
+   ========================= */
+
 .right-panel-tabs {
+    width: 100%;
     height: 40px;
+    min-height: 40px;
+
     flex-shrink: 0;
+
     display: flex;
+
     border-bottom: 1px solid #334155;
 }
 
 .right-panel-tabs button {
     flex: 1;
+
+    height: 40px;
+
     border: none;
     border-bottom: 2px solid transparent;
+
     background: transparent;
+
     color: #94a3b8;
+
     font-family: inherit;
     font-size: 11px;
+
     cursor: pointer;
 }
 
@@ -36,8 +57,92 @@
     color: #f8fafc;
 }
 
+/* =========================
+   PANEL CONTENT
+   ========================= */
+
 .right-panel-content {
+    width: 100%;
+
     flex: 1;
+    min-width: 0;
     min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
     overflow: hidden;
+}
+
+/* Make actual panels fill content */
+
+.right-panel-content>.chat-panel,
+.right-panel-content>.participants-panel {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    flex: 1;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 767px) {
+    .workspace-right-panel-container {
+        width: 100% !important;
+        height: 320px !important;
+
+        min-width: 0;
+        min-height: 320px;
+
+        flex-shrink: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        margin: 0;
+        padding: 0;
+
+        border-left: none;
+        border-top: 1px solid #334155;
+
+        box-sizing: border-box;
+    }
+
+    .right-panel-tabs {
+        width: 100%;
+        height: 40px;
+        min-height: 40px;
+
+        flex-shrink: 0;
+    }
+
+    .right-panel-content {
+        width: 100%;
+        height: auto;
+
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: hidden;
+    }
+
+    .right-panel-content>.chat-panel,
+    .right-panel-content>.participants-panel {
+        width: 100%;
+        height: 100%;
+
+        min-width: 0;
+        min-height: 0;
+
+        flex: 1;
+    }
 }

@@ -5,33 +5,45 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     box-sizing: border-box;
     padding: 0 10px;
     background: #1e293b;
     border-top: 1px solid #334155;
     color: #94a3b8;
     font-family: "Inter", system-ui, sans-serif;
-    font-size: 10px;
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.status-bar-left,
+.status-bar-center,
+.status-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .status-bar-left,
 .status-bar-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    flex-shrink: 0;
 }
 
 .status-bar-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    min-width: 0;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.status-bar-center span {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .status-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    white-space: nowrap;
+    gap: 4px;
 }
 
 .status-item svg {
@@ -42,11 +54,76 @@
     color: #10b981;
 }
 
-.status-connected svg {
-    font-size: 6px;
+.status-sync {
+    color: #10b981;
 }
 
-.status-git-clean {
+.status-sync-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.status-warning {
+    color: #f59e0b;
+}
+
+.status-error {
+    color: #ef4444;
+}
+
+.status-latency {
     color: #10b981;
-    white-space: nowrap;
+}
+
+.status-latency-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+@media (max-width: 1023px) {
+    .status-bar-center {
+        gap: 7px;
+    }
+
+    .status-bar-center span:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .workspace-status-bar-content {
+        padding: 0 6px;
+        gap: 6px;
+        font-size: 8px;
+    }
+
+    .status-bar-left,
+    .status-bar-right {
+        gap: 7px;
+    }
+
+    .status-bar-left .status-item:first-child span,
+    .status-bar-left .status-sync span:not(.status-sync-dot),
+    .status-bar-left .status-item:nth-child(3) {
+        display: none;
+    }
+
+    .status-bar-center {
+        gap: 5px;
+    }
+
+    .status-bar-center span:nth-child(2),
+    .status-bar-center span:nth-child(3),
+    .status-bar-center span:nth-child(4) {
+        display: none;
+    }
+
+    .status-warning span,
+    .status-error span {
+        display: none;
+    }
 }

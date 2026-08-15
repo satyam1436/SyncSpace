@@ -1,8 +1,37 @@
-.join-room-form {
-  width: 100%;
+.join-create-room {
+  margin-top: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  font-family:
+    "Inter",
+    system-ui,
+    sans-serif;
+
+  font-size: 12px;
+
+  color: #94a3b8;
 }
 
-.join-submit-btn {
-  width: 100%;
-  margin-top: 8px;
+.join-create-room-button {
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #60a5fa;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.join-create-room-button:hover {
+  color: #93c5fd;
+  text-decoration: underline;
 }

@@ -1,26 +1,25 @@
 .top-nav {
+    position: relative;
     height: 56px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
     padding: 0 16px;
+    box-sizing: border-box;
     background: #1e293b;
     border-bottom: 1px solid #334155;
     font-family: "Inter", system-ui, sans-serif;
+    z-index: 50;
 }
 
-.top-nav-brand,
-.top-nav-room,
-.top-nav-actions {
-    display: flex;
-    align-items: center;
-}
+/* Brand */
 
 .top-nav-brand {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    min-width: 180px;
+    min-width: 150px;
 }
 
 .top-nav-logo {
@@ -42,36 +41,50 @@
     font-weight: 700;
 }
 
+/* Room */
+
 .top-nav-room {
-    gap: 10px;
     min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
 }
 
 .top-nav-room-name {
+    max-width: 220px;
+    overflow: hidden;
     color: #f8fafc;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .top-nav-room-id {
     color: #94a3b8;
     font-family: monospace;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .top-nav-copy-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    padding: 0 8px;
     border: 1px solid #334155;
     border-radius: 6px;
     background: #020617;
     color: #94a3b8;
-    padding: 5px 8px;
-    font-size: 12px;
+    font-family: inherit;
+    font-size: 11px;
     cursor: pointer;
 }
 
 .top-nav-copy-button:hover {
-    color: #f8fafc;
     border-color: #475569;
+    color: #f8fafc;
 }
 
 .top-nav-copy-button:focus-visible {
@@ -79,14 +92,27 @@
     outline-offset: 2px;
 }
 
-.top-nav-actions {
-    gap: 12px;
-    min-width: 180px;
-    justify-content: flex-end;
+.top-nav-live-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #10b981;
+    font-size: 10px;
+    white-space: nowrap;
 }
+
+.top-nav-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+/* Mode Switcher */
 
 .top-nav-mode-switcher {
     display: flex;
+    flex-shrink: 0;
     padding: 3px;
     border: 1px solid #334155;
     border-radius: 6px;
@@ -94,13 +120,20 @@
 }
 
 .top-nav-mode {
+    min-width: 62px;
+    height: 28px;
+    padding: 0 8px;
     border: none;
     border-radius: 4px;
     background: transparent;
     color: #94a3b8;
-    padding: 5px 9px;
-    font-size: 12px;
+    font-family: inherit;
+    font-size: 11px;
     cursor: pointer;
+}
+
+.top-nav-mode:hover {
+    color: #f8fafc;
 }
 
 .top-nav-mode.active {
@@ -108,15 +141,205 @@
     color: #ffffff;
 }
 
-.top-nav-avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+.top-nav-mode:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Profile */
+
+.top-nav-profile {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.top-nav-profile-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.top-nav-profile-button:hover {
     background: #334155;
     color: #f8fafc;
+}
+
+.top-nav-profile-button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.top-nav-avatar {
+    position: relative;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    background: #334155;
+    color: #f8fafc;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.top-nav-online-dot {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #1e293b;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.top-nav-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+}
+
+.top-nav-user-name {
+    color: #f8fafc;
     font-size: 11px;
     font-weight: 600;
+}
+
+.top-nav-user-role {
+    color: #3b82f6;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Profile Dropdown */
+
+.top-nav-profile-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 210px;
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background: #1e293b;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.profile-menu-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px;
+}
+
+.profile-menu-user>svg {
+    color: #94a3b8;
+    font-size: 22px;
+}
+
+.profile-menu-user div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-menu-user strong {
+    color: #f8fafc;
+    font-size: 11px;
+}
+
+.profile-menu-user span {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.profile-menu-divider {
+    height: 1px;
+    margin: 7px 0;
+    background: #334155;
+}
+
+.profile-menu-leave {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #f87171;
+    font-family: inherit;
+    font-size: 11px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.profile-menu-leave:hover {
+    background: rgba(244, 63, 94, 0.12);
+}
+
+.profile-menu-leave:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Tablet / Mobile */
+
+@media (max-width: 1023px) {
+    .top-nav-brand {
+        min-width: auto;
+    }
+
+    .top-nav-title {
+        display: none;
+    }
+
+    .top-nav-room-name {
+        max-width: 150px;
+    }
+
+    .top-nav-user-info {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .top-nav {
+        gap: 8px;
+        padding: 0 8px;
+    }
+
+    .top-nav-room {
+        overflow: hidden;
+    }
+
+    .top-nav-room-id,
+    .top-nav-live-status {
+        display: none;
+    }
+
+    .top-nav-room-name {
+        max-width: 120px;
+    }
+
+    .top-nav-mode {
+        min-width: 50px;
+        padding: 0 5px;
+    }
+
+    .top-nav-profile-button>svg {
+        display: none;
+    }
 }

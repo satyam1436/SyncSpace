@@ -11,74 +11,225 @@ import {
     logoutUser,
 } from "../api/auth.api";
 
-export const AuthContext = createContext(null);
+export const AuthContext =
+    createContext(null);
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(() => {
-        const storedUser = localStorage.getItem("user");
+/* =========================================
+   STORAGE HELPERS
+========================================= */
 
-        if (!storedUser) {
-            return null;
-        }
+const getStoredToken = () => {
+    return (
+        sessionStorage.getItem(
+            "token"
+        ) ||
+        localStorage.getItem(
+            "token"
+        )
+    );
+};
 
-        try {
-            return JSON.parse(storedUser);
-        } catch (error) {
-            console.error("Failed to parse stored user:", error);
-            localStorage.removeItem("user");
-            return null;
-        }
-    });
+const getStoredUser = () => {
+    const storedUser =
+        sessionStorage.getItem(
+            "user"
+        ) ||
+        localStorage.getItem(
+            "user"
+        );
 
-    const [token, setToken] = useState(() => {
-        return localStorage.getItem("token");
-    });
+    if (!storedUser) {
+        return null;
+    }
 
-    const [isLoading, setIsLoading] = useState(true);
+    try {
+        return JSON.parse(
+            storedUser
+        );
+    } catch (error) {
+        console.error(
+            "Failed to parse stored user:",
+            error
+        );
 
-    const isAuthenticated = Boolean(token && user);
+        sessionStorage.removeItem(
+            "user"
+        );
 
-    // Restore session after page refresh
+        localStorage.removeItem(
+            "user"
+        );
+
+        return null;
+    }
+};
+
+export const AuthProvider = ({
+    children,
+}) => {
+    const [user, setUser] =
+        useState(() =>
+            getStoredUser()
+        );
+
+    const [token, setToken] =
+        useState(() =>
+            getStoredToken()
+        );
+
+    const [isLoading, setIsLoading] =
+        useState(true);
+
+    const isAuthenticated =
+        Boolean(
+            token && user
+        );
+
+    /* =========================================
+       RESTORE SESSION
+    ========================================= */
+
     useEffect(() => {
-        const restoreSession = async () => {
-            if (!token) {
-                setIsLoading(false);
-                return;
-            }
+        const restoreSession =
+            async () => {
+                if (!token) {
+                    setIsLoading(false);
+                    return;
+                }
 
-            try {
-                const response = await getCurrentUser(token);
+                try {
+                    const response =
+                        await getCurrentUser(
+                            token
+                        );
 
-                setUser(response.data.user);
+                    const currentUser =
+                        response.data.user;
 
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(response.data.user)
-                );
-            } catch (error) {
-                console.error("Session restoration failed:", error);
+                    setUser(
+                        currentUser
+                    );
 
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
+                    /*
+                     * Update the storage from
+                     * which the current token came.
+                     */
+                    if (
+                        sessionStorage.getItem(
+                            "token"
+                        ) === token
+                    ) {
+                        sessionStorage.setItem(
+                            "user",
+                            JSON.stringify(
+                                currentUser
+                            )
+                        );
+                    } else if (
+                        localStorage.getItem(
+                            "token"
+                        ) === token
+                    ) {
+                        localStorage.setItem(
+                            "user",
+                            JSON.stringify(
+                                currentUser
+                            )
+                        );
+                    }
+                } catch (error) {
+                    console.error(
+                        "Session restoration failed:",
+                        error
+                    );
 
-                setToken(null);
-                setUser(null);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+                    sessionStorage.removeItem(
+                        "token"
+                    );
+
+                    sessionStorage.removeItem(
+                        "user"
+                    );
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+                    setToken(null);
+                    setUser(null);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
 
         restoreSession();
     }, [token]);
 
-    // Login
-    const login = async (credentials) => {
-        const response = await loginUser(credentials);
+    /* =========================================
+       LOGIN
+    ========================================= */
 
-        const { user, token } = response.data;
+    const login = async (
+        credentials
+    ) => {
+        const response =
+            await loginUser(
+                credentials
+            );
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        const {
+            user,
+            token,
+        } = response.data;
+
+        const rememberMe =
+            credentials.rememberMe ||
+            false;
+
+        /*
+         * Clear old authentication
+         * from both storage types.
+         */
+        sessionStorage.removeItem(
+            "token"
+        );
+
+        sessionStorage.removeItem(
+            "user"
+        );
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        /*
+         * Remember Me:
+         *
+         * checked   → localStorage
+         * unchecked → sessionStorage
+         */
+        const storage =
+            rememberMe
+                ? localStorage
+                : sessionStorage;
+
+        storage.setItem(
+            "token",
+            token
+        );
+
+        storage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
 
         setToken(token);
         setUser(user);
@@ -86,17 +237,38 @@ export const AuthProvider = ({ children }) => {
         return response;
     };
 
-    // Logout
+    /* =========================================
+       LOGOUT
+    ========================================= */
+
     const logout = async () => {
         try {
             if (token) {
-                await logoutUser(token);
+                await logoutUser(
+                    token
+                );
             }
         } catch (error) {
-            console.error("Logout API failed:", error);
+            console.error(
+                "Logout API failed:",
+                error
+            );
         } finally {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            sessionStorage.removeItem(
+                "token"
+            );
+
+            sessionStorage.removeItem(
+                "user"
+            );
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
 
             setToken(null);
             setUser(null);
@@ -113,7 +285,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={value}>
+        <AuthContext.Provider
+            value={value}
+        >
             {children}
         </AuthContext.Provider>
     );

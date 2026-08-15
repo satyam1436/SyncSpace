@@ -49,10 +49,4 @@ router.get(
     getRoom
 );
 
-router.post("/", createRoom);
-router.post("/join", joinRoom);
-router.post("/:roomId/leave", leaveRoom);
-router.get("/my-rooms", getMyRooms);
-router.get("/:roomId", getRoom);
-
 export default router;

@@ -7,53 +7,129 @@
     color: #f8fafc;
 }
 
-.whiteboard-grid {
+.whiteboard-toolbar {
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(#334155 1px,
-            transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.45;
+    top: 12px;
+    left: 50%;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px;
+
+    border: 1px solid #334155;
+    border-radius: 8px;
+
+    background: #1e293b;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+    transform: translateX(-50%);
 }
 
-.whiteboard-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
+.whiteboard-tool-group {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.whiteboard-tool {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
     align-items: center;
     justify-content: center;
+
+    border: none;
+    border-radius: 5px;
+
+    background: transparent;
+    color: #94a3b8;
+
+    cursor: pointer;
+}
+
+.whiteboard-tool:hover {
+    background: #334155;
+    color: #f8fafc;
+}
+
+.whiteboard-tool.active {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.whiteboard-tool:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.whiteboard-tool svg {
+    font-size: 12px;
+}
+
+.whiteboard-zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    padding-left: 6px;
+
+    border-left: 1px solid #334155;
+}
+
+.whiteboard-zoom-controls>span {
+    min-width: 38px;
+
+    color: #cbd5e1;
+
+    font-size: 10px;
+
     text-align: center;
 }
 
-.whiteboard-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    background: #1e293b;
-    color: #3b82f6;
-    font-size: 18px;
-    font-weight: 700;
+.whiteboard-canvas {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
 }
 
-.whiteboard-content h2 {
-    margin: 0;
-    font-size: 18px;
+.whiteboard-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image: radial-gradient(#334155 1px,
+            transparent 1px);
+
+    background-size: 24px 24px;
+
+    opacity: 0.45;
+
+    pointer-events: none;
 }
 
-.whiteboard-content p {
-    margin: 8px 0 4px;
-    color: #94a3b8;
-    font-size: 13px;
+.whiteboard-canvas canvas {
+    position: relative;
+    z-index: 1;
 }
 
-.whiteboard-content span {
-    color: #64748b;
-    font-size: 11px;
+@media (max-width: 767px) {
+    .whiteboard-toolbar {
+        top: 8px;
+
+        max-width: calc(100% - 16px);
+
+        overflow-x: auto;
+
+        transform: translateX(-50%);
+    }
+
+    .whiteboard-tool {
+        width: 28px;
+        height: 28px;
+    }
 }

@@ -62,9 +62,11 @@ const LoginCard = () => {
       await login({
         email: formData.email.trim().toLowerCase(),
         password: formData.password,
+        rememberMe: formData.rememberMe,
       });
 
-      navigate("/create-room");
+      // navigate("/workspace");
+      navigate("/join-room");
     } catch (error) {
       console.error(error);
 

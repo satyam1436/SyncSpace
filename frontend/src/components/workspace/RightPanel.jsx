@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ParticipantsPanel from "./ParticipantsPanel";
 import ChatPanel from "./ChatPanel";
 import "./RightPanel.css";
@@ -6,15 +5,21 @@ import "./RightPanel.css";
 function RightPanel({
     activePanel,
     onPanelChange,
+    roomId,
 }) {
-
     return (
         <aside className="workspace-right-panel-container">
             <div className="right-panel-tabs">
                 <button
                     type="button"
-                    className={activePanel === "chat" ? "active" : ""}
-                    onClick={() => onPanelChange("chat")}
+                    className={
+                        activePanel === "chat"
+                            ? "active"
+                            : ""
+                    }
+                    onClick={() =>
+                        onPanelChange("chat")
+                    }
                 >
                     Chat
                 </button>
@@ -22,9 +27,16 @@ function RightPanel({
                 <button
                     type="button"
                     className={
-                        activePanel === "participants" ? "active" : ""
+                        activePanel ===
+                            "participants"
+                            ? "active"
+                            : ""
                     }
-                    onClick={() => onPanelChange("participants")}
+                    onClick={() =>
+                        onPanelChange(
+                            "participants"
+                        )
+                    }
                 >
                     Participants
                 </button>
@@ -32,7 +44,9 @@ function RightPanel({
 
             <div className="right-panel-content">
                 {activePanel === "chat" ? (
-                    <ChatPanel />
+                    <ChatPanel
+                        roomId={roomId}
+                    />
                 ) : (
                     <ParticipantsPanel />
                 )}
