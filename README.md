@@ -72,8 +72,6 @@ npm run dev
 ## Team Members
 
 - Satyam Kumar
-- SAI HARSHITH KOMARAGIRIPATNAM
-- Tripura Goud Talla
 - Vivek Kumar
 
 ## License
