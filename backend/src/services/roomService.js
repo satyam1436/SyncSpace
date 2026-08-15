@@ -36,15 +36,25 @@ export const joinRoom = async ({ roomId, userId }) => {
         throw error;
     }
 
-    const alreadyParticipant = existingRoom.participants.some(
-        (participantId) => participantId.toString() === userId.toString()
-    );
+    const alreadyParticipant =
+        existingRoom.participants.some(
+            (participantId) =>
+                participantId.toString() ===
+                userId.toString()
+        );
 
+    // User already belongs to the room.
+    // Allow re-entry instead of returning 409.
     if (alreadyParticipant) {
-        const error = new Error("User is already a participant in this room");
-        error.statusCode = 409;
-        error.errorCode = "ALREADY_PARTICIPANT";
-        throw error;
+        return await Room.findById(existingRoom._id)
+            .populate(
+                "owner",
+                "name email avatar"
+            )
+            .populate(
+                "participants",
+                "name email avatar"
+            );
     }
 
     const room = await Room.findOneAndUpdate(
@@ -59,8 +69,14 @@ export const joinRoom = async ({ roomId, userId }) => {
             runValidators: true,
         }
     )
-        .populate("owner", "name email avatar")
-        .populate("participants", "name email avatar");
+        .populate(
+            "owner",
+            "name email avatar"
+        )
+        .populate(
+            "participants",
+            "name email avatar"
+        );
 
     return room;
 };

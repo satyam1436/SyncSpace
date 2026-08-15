@@ -3,30 +3,141 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
     background: #020617;
     color: #f8fafc;
+
     overflow: hidden;
 }
+
+/* ================================
+   TOOLBAR
+================================ */
+
+.code-editor-toolbar {
+    min-height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.code-editor-toolbar-left,
+.code-editor-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.code-editor-new-file,
+.code-editor-run-button,
+.code-editor-output-button {
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 0 10px;
+
+    border: 1px solid #334155;
+    border-radius: 5px;
+
+    background: #1e293b;
+    color: #cbd5e1;
+
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.code-editor-new-file:hover,
+.code-editor-output-button:hover {
+    background: #334155;
+    color: #f8fafc;
+}
+
+.code-editor-run-button {
+    border-color: #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.code-editor-run-button:hover {
+    background: #1d4ed8;
+}
+
+.code-editor-run-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.code-editor-language-select {
+    height: 28px;
+
+    padding: 0 28px 0 9px;
+
+    border: 1px solid #334155;
+    border-radius: 5px;
+
+    background: #1e293b;
+    color: #cbd5e1;
+
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 10px;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.code-editor-language-select:focus {
+    border-color: #2563eb;
+}
+
+/* ================================
+   FILE TABS
+================================ */
 
 .code-editor-tabs {
     height: 40px;
     flex-shrink: 0;
+
     display: flex;
     align-items: stretch;
+
     background: #1e293b;
     border-bottom: 1px solid #334155;
+
     overflow-x: auto;
 }
 
 .code-editor-tab {
-    min-width: 110px;
-    padding: 0 14px;
+    min-width: 130px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 0 10px;
+
     border: none;
     border-right: 1px solid #334155;
+    border-top: 2px solid transparent;
+
     background: transparent;
     color: #94a3b8;
+
     font-family: "Inter", system-ui, sans-serif;
-    font-size: 12px;
+    font-size: 11px;
+
     cursor: pointer;
     white-space: nowrap;
 }
@@ -39,41 +150,196 @@
 .code-editor-tab.active {
     color: #f8fafc;
     background: #020617;
-    border-top: 2px solid #2563eb;
+    border-top-color: #2563eb;
 }
 
+.code-editor-tab>svg {
+    flex-shrink: 0;
+    color: #61dafb;
+    font-size: 12px;
+}
+
+.code-editor-tab-close {
+    width: 18px;
+    height: 18px;
+
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+
+    color: #64748b;
+}
+
+.code-editor-tab-close:hover {
+    background: #334155;
+    color: #f8fafc;
+}
+
+.code-editor-tab-close svg {
+    font-size: 9px;
+}
+
+/* ================================
+   EDITOR
+================================ */
+
 .code-editor-surface {
+    position: relative;
+
     flex: 1;
     min-height: 0;
-    overflow: auto;
-    padding: 14px 0;
+
+    overflow: hidden;
+
     background: #020617;
 }
 
-.code-editor-lines {
-    min-width: max-content;
-    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
-    font-size: 13px;
-    line-height: 1.7;
+.code-editor-live-status {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+
+    z-index: 5;
+
+    color: #10b981;
+
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 9px;
+
+    pointer-events: none;
 }
 
-.code-editor-line {
-    display: flex;
-    min-height: 22px;
-}
+/* ================================
+   OUTPUT
+================================ */
 
-.code-editor-line-number {
-    width: 48px;
+.code-editor-output {
+    height: 150px;
     flex-shrink: 0;
-    padding-right: 14px;
-    box-sizing: border-box;
-    text-align: right;
-    color: #475569;
-    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #020617;
+    border-top: 1px solid #334155;
 }
 
-.code-editor-code {
-    padding-right: 32px;
+.code-editor-output-header {
+    height: 34px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+
     color: #cbd5e1;
-    white-space: pre;
+
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.code-editor-output-header span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.code-editor-output-header button {
+    border: none;
+    background: transparent;
+    color: #64748b;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.code-editor-output-header button:hover {
+    color: #f8fafc;
+}
+
+.code-editor-output pre {
+    flex: 1;
+
+    margin: 0;
+    padding: 10px 12px;
+
+    overflow: auto;
+
+    color: #cbd5e1;
+
+    font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size: 11px;
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+}
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+.code-editor-tabs::-webkit-scrollbar,
+.code-editor-output pre::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+.code-editor-tabs::-webkit-scrollbar-track,
+.code-editor-output pre::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+.code-editor-tabs::-webkit-scrollbar-thumb,
+.code-editor-output pre::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+.code-editor-tabs::-webkit-scrollbar-thumb:hover,
+.code-editor-output pre::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 767px) {
+    .code-editor-toolbar {
+        padding: 0 6px;
+    }
+
+    .code-editor-new-file,
+    .code-editor-output-button {
+        padding: 0 7px;
+    }
+
+    .code-editor-toolbar-left,
+    .code-editor-toolbar-right {
+        gap: 4px;
+    }
+
+    .code-editor-tab {
+        min-width: 110px;
+    }
+
+    .code-editor-output {
+        height: 130px;
+    }
 }
